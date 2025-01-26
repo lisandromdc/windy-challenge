@@ -1,0 +1,5 @@
+export const ORDER_STATUS_IDS = {
+  PENDING: 1,
+  IN_PROGRESS: 3,
+  DELIVERED: 4,
+}
