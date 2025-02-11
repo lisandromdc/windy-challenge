@@ -26,6 +26,7 @@ export async function createOrder(req: NextApiRequest) {
       totalPrice,
       OrderItem: { create: data.menuItemIdsAndQuantities },
     },
+    include: { status: true },
   });
   
   await axios.post(`${WEB_SOCKET_SERVER}/emit`, {

@@ -12,6 +12,7 @@ import { api } from '~/lib/api';
 // context
 import { useCart } from '~/context/CartContext';
 import { NavLink } from 'react-router';
+import { ROUTES } from '~/constants/constants';
 
 export default function Menu() {
   const i18n = defineI18n('menu');
@@ -64,7 +65,7 @@ export default function Menu() {
                 </p>
                 <CardFooter className="p-2 sm:p-4 pt-0">
                   {isInCart ? (
-                    <NavLink className="w-full" to="/Cart">
+                    <NavLink className="w-full" to={ROUTES.CART}>
                       <Button className="w-full">{i18n('finishOrder')}</Button>
                     </NavLink>
                   ) : (

@@ -11,7 +11,10 @@ import { ModelId } from '@/schemas/api.schemas';
 async function getOder(req: NextApiRequest, { params }: Context<{ id: string }>) {
   const data = await params;
   const id = ModelId.parse(+data.id);
-  const order = await prisma.order.findUnique({ where: { id } });
+  const order = await prisma.order.findUnique({
+    where: { id },
+    include: { status: true },
+  });
   return order;
 }
 

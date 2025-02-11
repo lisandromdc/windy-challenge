@@ -9,7 +9,6 @@ import routes from './messages/routes.i18n';
 
 let lang = 'es';
 if (typeof window !== "undefined") {
-  console.log('LLEGO', localStorage.getItem('lang'));
   lang = localStorage.getItem('lang') || 'es';
 }
 

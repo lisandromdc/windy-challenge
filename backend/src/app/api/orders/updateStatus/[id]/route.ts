@@ -10,7 +10,10 @@ async function updateOrderStatus(req: NextApiRequest, res: NextApiResponse) {
   const data = await res.params;
   const orderId = ModelId.parse(+data.id);
 
-  const order = await prisma.order.findUnique({ where: { id: orderId } });
+  const order = await prisma.order.findUnique({
+    where: { id: orderId },
+    include: { status: true },
+  });
   if (!order) return res.status(404).json({ error: 'Order not found' });
 
   if (order.orderStatusId >= ORDER_STATUS_IDS.DELIVERED) {
@@ -20,7 +23,8 @@ async function updateOrderStatus(req: NextApiRequest, res: NextApiResponse) {
   // Update order status
   const updatedOrder = await prisma.order.update({
     where: { id: orderId },
-    data: { orderStatusId: order.orderStatusId + 1 }
+    data: { orderStatusId: order.orderStatusId + 1 },
+    include: { status: true },
   });
 
   // Send event to WebSocket server

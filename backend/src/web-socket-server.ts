@@ -14,13 +14,11 @@ app.use(cors());
 
 io.on('connection', (socket) => {
   console.log('Client connected:', socket.id);
-
   socket.on('disconnect', () => {
     console.log('Client disconnected:', socket.id);
   });
 });
 
-// FIX: Explicitly define the function separately before using it in `app.post()`
 const emitEventHandler = (req: Request, res: Response) => {
   const { event, data } = req.body as { event: string; data: any };
 
@@ -32,7 +30,6 @@ const emitEventHandler = (req: Request, res: Response) => {
   res.json({ success: true });
 };
 
-// Attach the fixed handler to the Express app
 app.post('/emit', emitEventHandler);
 
 const PORT = 3001;

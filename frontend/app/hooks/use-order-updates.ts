@@ -18,12 +18,11 @@ const useOrderUpdates = () => {
     fetchOrder();
 
     socket.on('orderUpdated', (updatedOrder) => {
-      console.log('Pedido actualizado:', updatedOrder);
       setOrder(updatedOrder);
     });
 
     return () => {
-      socket.off('orderUpdated'); // Cleanup al desmontar el componente
+      socket.off('orderUpdated');
     };
   }, []);
 
