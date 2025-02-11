@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 // seed
 import { menuItemsSeed } from './seed/menu-items.seed';
-import { ordersSeed } from './seed/orders.seed';
+// import { ordersSeed } from './seed/orders.seed';
 import { orderStatusesSeed } from './seed/order-statuses.seed';
 
 const prisma = new PrismaClient();
@@ -21,18 +21,18 @@ async function main() {
       await prisma.orderStatus.create({ data });
     })
   );
-  await Promise.all(
-    ordersSeed.map(async (data) => {
-      await prisma.order.create({
-        data: {
-          id: data.id,
-          totalPrice: data.totalPrice,
-          orderStatusId: data.orderStatusId,
-          OrderItem: { create: data.menuItems },
-        }
-      });
-    })
-  );
+  // await Promise.all(
+  //   ordersSeed.map(async (data) => {
+  //     await prisma.order.create({
+  //       data: {
+  //         id: data.id,
+  //         totalPrice: data.totalPrice,
+  //         orderStatusId: data.orderStatusId,
+  //         OrderItem: { create: data.menuItems },
+  //       }
+  //     });
+  //   })
+  // );
 
   console.log('Seed data successfully created!');
 }

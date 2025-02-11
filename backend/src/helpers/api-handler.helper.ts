@@ -16,6 +16,8 @@ export function apiHandler(handler: Handler) {
       const response = await handler(req, res);
       if (method === 'POST') {
         return responseHelper.success.post(response);
+      } else if (method === 'PUT') {
+        return responseHelper.success.put(response);
       } else if (method === 'GET') {
         if (!response) return responseHelper.error.notFound(null, i18n('notFound'));
         return responseHelper.success.get(response);

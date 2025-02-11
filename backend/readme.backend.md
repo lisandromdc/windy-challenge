@@ -23,6 +23,7 @@ run `npx prisma studio`
 
 ### Development
 - Initialize local server: run `bun dev`
+- Initialize websocket: run `bun dev:ws`
 
 
 ## API TESTING

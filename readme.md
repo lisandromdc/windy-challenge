@@ -1,3 +1,12 @@
 # Windy Challenge
 This repository is separated in backend and frontend folders.
-Both have their own readme, you can start following the backend readme and then frontend.
+
+In order to make the full app work I recommend
+- Follow Database installation steps
+- Run api server (and keep it open)
+- Run websocket server (and keep it open)
+- Run frontend server (and keep it open)
+
+Evaluation
+- Go to http://localhost:5173/menu to start
+- Test the api on it's own using Postman (import file is located in backend/testing directory)

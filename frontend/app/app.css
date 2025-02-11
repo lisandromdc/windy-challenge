@@ -161,3 +161,10 @@ body {
   --chart-4: 348, 83%, 57%;
   --chart-5: 268, 63%, 69%;
 }
+
+
+.main-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

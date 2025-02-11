@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { prisma } from '@/prisma-middleware';
 // schemas
@@ -5,7 +6,7 @@ import { CreateOrderSchema } from './order.schema';
 // helpers
 import { apiHandler } from '@/helpers/api-handler.helper';
 // constants
-import { ORDER_STATUS_IDS } from '@/constants/constants';
+import { ORDER_STATUS_IDS, WEB_SOCKET_SERVER } from '@/constants/constants';
 
 // CREATE ORDER
 export async function createOrder(req: NextApiRequest) {
@@ -21,10 +22,15 @@ export async function createOrder(req: NextApiRequest) {
   }, 0) ;
   const order = await prisma.order.create({
     data: {
-      orderStatusId: ORDER_STATUS_IDS.IN_PROGRESS,
+      orderStatusId: ORDER_STATUS_IDS.PENDING,
       totalPrice,
       OrderItem: { create: data.menuItemIdsAndQuantities },
     },
+  });
+  
+  await axios.post(`${WEB_SOCKET_SERVER}/emit`, {
+    event: 'orderUpdated',
+    data: order
   });
   return order;
 }

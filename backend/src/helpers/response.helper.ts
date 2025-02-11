@@ -7,6 +7,9 @@ export const responseHelper = {
     post(data: Data) {
       return NextResponse.json(data, { status: 201 });
     },
+    put(data: Data) {
+      return NextResponse.json(data, { status: 200 });
+    },
     get(data: Data) {
       return NextResponse.json(data, { status: 200 });
     },

@@ -12,7 +12,6 @@ async function getOder(req: NextApiRequest, { params }: Context<{ id: string }>)
   const data = await params;
   const id = ModelId.parse(+data.id);
   const order = await prisma.order.findUnique({ where: { id } });
-  console.log('ORDER', order);
   return order;
 }
 
